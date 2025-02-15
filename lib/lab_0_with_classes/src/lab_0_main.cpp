@@ -1,16 +1,16 @@
 #include <Arduino.h>
-#include "main.h"
+#include "lab_0_main.h"
 #include "dd_led/dd_led.h"
 #include "dd_button/dd_button.h"
 
 Led led(13);
 Button button(12);
 
-void setup() {
+void lab_0_setup() {
     
 }
 
-void loop() {
+void lab_0_loop() {
     if (button.isPressed()) {
         led.on();
     } else {
