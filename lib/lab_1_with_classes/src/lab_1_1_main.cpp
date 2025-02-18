@@ -26,7 +26,7 @@ void lab_1_1_loop() {
             if (led.getState() == 0) {
                 printf("Led is already off\n");
             } else {
-                led.on();
+                led.off();
                 printf("Led was Turned Off\n");
             }
         } else {
