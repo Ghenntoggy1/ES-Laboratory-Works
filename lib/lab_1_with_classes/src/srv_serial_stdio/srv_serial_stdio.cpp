@@ -15,12 +15,16 @@ void srvSerialSetup() {
 }
 
 int srvSerialGetChar(FILE* stream) {
-    if (Serial.available()) {
-        return Serial.read();
+    while (!Serial.available()) {
+        ;
     }
-    return EOF;
+    return Serial.read();
 }
+
 int srvSerialPutChar(char c, FILE* stream) {
+    if (c == '\n') {
+        Serial.write('\r');
+    }
     Serial.write(c);
     return 0;
 }

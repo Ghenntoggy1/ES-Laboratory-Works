@@ -13,15 +13,24 @@ void lab_1_1_setup() {
 
 void lab_1_1_loop() {
     char c[11] = "";
-    scanf("%10s", c);
-    
-    if (strcmp(c, "ledon") == 0) {
-        led.on();
-      	printf("Led was Turned On\n");
-    } else if (strcmp(c, "ledoff") == 0) {
-        led.off();
-        printf("Led was Turned Off\n");
-    } else {
-    	delay(500);
+    if (scanf("%10s", c) > 0) {
+        printf("Received command: %s\n", c);
+        if (strcmp(c, "ledon") == 0) {
+            if (led.getState() == 1) {
+                printf("Led is already on\n");
+            } else {
+                led.on();
+                printf("Led was Turned On\n");
+            }
+        } else if (strcmp(c, "ledoff") == 0) {
+            if (led.getState() == 0) {
+                printf("Led is already off\n");
+            } else {
+                led.on();
+                printf("Led was Turned Off\n");
+            }
+        } else {
+            printf("Invalid command\n");
+        }
     }
 }
