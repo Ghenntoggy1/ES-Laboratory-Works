@@ -18,5 +18,5 @@ int Led::getState() {
 }
 
 void Led::toggle() {
-    return digitalRead(ledPin) == HIGH ? off() : on();
+    return getState() == HIGH ? off() : on();
 }

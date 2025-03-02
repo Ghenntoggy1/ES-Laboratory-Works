@@ -7,9 +7,9 @@ private:
 
 public:
     Led(int ledPin);
+    int getState();
     void on();
     void off();
-    int getState();
     void toggle();
 };
 
