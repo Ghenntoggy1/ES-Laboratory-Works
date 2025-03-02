@@ -12,8 +12,6 @@ extern volatile GlobalVariables globalStates;
 void globalStatesSetup();
 void setLed1State(bool state);
 void setLed2State(bool state);
-void incrementCounter();
-void decrementCounter();
 void setCounter(int value);
 bool getLed1State();
 bool getLed2State();
