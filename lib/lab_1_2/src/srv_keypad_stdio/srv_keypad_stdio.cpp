@@ -3,8 +3,8 @@
 #include <Keypad.h>
 #include <stdio.h>
 
-byte ROW_PINS[KEYPAD_ROWS] = {3, 2, 1, 0};
-byte COL_PINS[KEYPAD_COLS] = {7, 6, 5, 4};
+byte ROW_PINS[KEYPAD_ROWS] = {9, 8, 7, 6};
+byte COL_PINS[KEYPAD_COLS] = {5, 4, 3, 2};
 
 char KEYPAD_KEYS[KEYPAD_ROWS][KEYPAD_COLS] = {
   {'1', '2', '3', 'A'},

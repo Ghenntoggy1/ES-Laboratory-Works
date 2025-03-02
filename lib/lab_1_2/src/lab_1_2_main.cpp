@@ -12,6 +12,8 @@ int inputCodeIndex = 0;
 bool codeSet = false;
 
 void lab_1_2_setup() {
+    Serial.begin(9600);
+
     srvLCDSetup();
     srvLCDInit();
     srvKeypadSetup();
@@ -21,7 +23,7 @@ void lab_1_2_loop() {
     if (!codeSet) {
         while (inputCodeIndex < 4) {
             char key;
-            scanf(" %c", &key);
+            scanf("%c", &key);
             if (key) {
                 if (isdigit(key)) {
                     inputCode[inputCodeIndex++] = key;
@@ -29,6 +31,7 @@ void lab_1_2_loop() {
                 }
             }
         }
+        Serial.println(inputCode);
         inputCode[inputCodeIndex] = '\0';
         strcpy(correctCode, inputCode);
         codeSet = true;
@@ -41,13 +44,13 @@ void lab_1_2_loop() {
         delay(1000);
         srvLCDClear();
     } else {
-      if (inputCodeIndex < 4) {
-        printf("Enter Code: ");
-        srvLCDCursor(0, 1);
-      }
+        if (inputCodeIndex < 4) {
+            printf("Enter Code: ");
+            srvLCDCursor(0, 1);
+        }
         while (inputCodeIndex < 4) {
             char key;
-            scanf(" %c", &key);
+            scanf("%c", &key);
             if (key) {
                 if (isdigit(key)) {
                     inputCode[inputCodeIndex++] = key;
