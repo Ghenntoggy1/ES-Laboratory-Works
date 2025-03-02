@@ -13,12 +13,11 @@
 #define IDLE_TASK_REC 500          // Run every 1000ms
 
 // Task Counters
-int buttonLedTaskCounter = BUTTON_LED_TASK_REC;
-int blinkingLedTaskCounter = BLINKING_LED_TASK_REC;
-int counterButtonsTaskCounter = COUNTER_BUTTONS_TASK_REC;
-int idleTaskCounter = IDLE_TASK_REC;
+extern int buttonLedTaskCounter;
+extern int blinkingLedTaskCounter;
+extern int counterButtonsTaskCounter;
+extern int idleTaskCounter;
 
-// Task States
 
 // Declare any function prototypes here
 void setupTimer1();

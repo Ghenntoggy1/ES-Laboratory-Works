@@ -3,6 +3,12 @@
 #include "srv_task_manager/srv_task_manager.h"
 #include <Arduino.h>
 
+// Define the task counters
+int buttonLedTaskCounter = BUTTON_LED_TASK_REC;
+int blinkingLedTaskCounter = BLINKING_LED_TASK_REC;
+int counterButtonsTaskCounter = COUNTER_BUTTONS_TASK_REC;
+int idleTaskCounter = IDLE_TASK_REC;
+
 void setupTimer1()
 {
     noInterrupts(); // Disable interrupts during setup
