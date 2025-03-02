@@ -19,6 +19,7 @@ int srvLCDPutChar(char c, FILE* stream) {
 void srvLCDInit() {
     lcd.init();
     lcd.backlight();
+    // lcd.begin(16, 2);
 
     printf("SETUP PIN:");
     lcd.setCursor(0, 1);
