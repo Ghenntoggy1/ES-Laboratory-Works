@@ -30,18 +30,6 @@ void setCounter(int value)
     globalStates.counter = value;
 }
 
-void incrementCounter()
-{
-    globalStates.counter++;
-}
-
-void decrementCounter()
-{
-    if (globalStates.counter > 0) {
-        globalStates.counter--;
-    }
-}
-
 bool getLed1State()
 {
     return globalStates.led1State;
