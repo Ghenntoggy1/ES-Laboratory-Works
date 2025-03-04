@@ -10,7 +10,7 @@
 #define BUTTON_LED_TASK_REC 100    // Run every 10ms
 #define BLINKING_LED_TASK_REC 0    // Run every 0ms (default)
 #define COUNTER_BUTTONS_TASK_REC 1 // Run every 10ms
-#define IDLE_TASK_REC 500          // Run every 1000ms
+#define IDLE_TASK_REC 1000          // Run every 1000ms
 
 // Task Counters
 extern int buttonLedTaskCounter;

@@ -23,9 +23,9 @@ void setupTimer1()
     // Set prescaler to 64
     TCCR1B |= (1 << CS11) | (1 << CS10);
 
-    // Set compare match value for 10ms interval
-    OCR1A = 2499; // 16MHz / 64 / 2500 = 100Hz (10ms)
-
+    // Set compare match value for 1ms interval
+    OCR1A = 249;
+    
     // Enable Timer1 compare match interrupt
     TIMSK1 |= (1 << OCIE1A);
 
@@ -57,13 +57,6 @@ void timeScheduler()
     {
         counterButtonsTaskCounter = COUNTER_BUTTONS_TASK_REC;
         taskCounterButtons();
-    }
-
-    // Idle Task: Reporting
-    if (--idleTaskCounter <= 0)
-    {
-        idleTaskCounter = IDLE_TASK_REC;
-        taskIdle();
     }
 }
 
