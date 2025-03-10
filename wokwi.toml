@@ -1,0 +1,11 @@
+[wokwi]
+version = 1
+firmware = ".pio/build/megaatmega2560/firmware.hex"
+elf = ".pio/build/megaatmega2560/firmware.elf"
+
+[atmega2560]
+frequency = 16000000
+
+[[serial]]
+port = "/dev/ttyUSB0"
+baud = 9600

@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "author": "Gusev Roman",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -127.8, "left": -54.8, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 115.8, "left": -19.8, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -51.6, "left": 23, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -51.6,
+      "left": 80.6,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "btn1",
+      "top": -37.4,
+      "left": 148,
+      "rotate": 90,
+      "attrs": { "color": "black", "xray": "1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 43.2,
+      "left": 18.65,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 43.2,
+      "left": 76.25,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "bb1:bn.1", "uno:GND.1", "black", [ "v27.5", "h116.8" ] ],
+    [ "r1:2", "uno:13", "red", [ "h0", "v27.6", "h57.6" ] ],
+    [ "r2:2", "uno:12", "green", [ "h0", "v18", "h9.6" ] ],
+    [ "bb1:22b.j", "uno:11", "#8f4814", [ "v67.2", "h-48" ] ],
+    [ "led1:A", "bb1:9b.f", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:8b.f", "", [ "$bb" ] ],
+    [ "led2:A", "bb1:15b.f", "", [ "$bb" ] ],
+    [ "led2:C", "bb1:14b.f", "", [ "$bb" ] ],
+    [ "r1:1", "bb1:9b.i", "", [ "$bb" ] ],
+    [ "r2:1", "bb1:15b.i", "", [ "$bb" ] ],
+    [ "btn1:1.l", "bb1:22t.e", "", [ "$bb" ] ],
+    [ "btn1:2.l", "bb1:20t.e", "", [ "$bb" ] ],
+    [ "btn1:1.r", "bb1:22b.f", "", [ "$bb" ] ],
+    [ "btn1:2.r", "bb1:20b.f", "", [ "$bb" ] ],
+    [ "bb1:20b.j", "bb1:bn.16", "black", [ "v0" ] ],
+    [ "bb1:14b.j", "bb1:bn.11", "black", [ "v0" ] ],
+    [ "bb1:8b.j", "bb1:bn.6", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
