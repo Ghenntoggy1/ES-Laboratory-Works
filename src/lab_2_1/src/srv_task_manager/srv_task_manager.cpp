@@ -16,8 +16,8 @@ void taskButtonLed()
 {
     if (button1.isPressed())
     { // Button is pressed (active-low)
-        setLed1State(!getLed1State());
-        if (getLed1State())
+        lab_2_1_setLed1State(!lab_2_1_getLed1State());
+        if (lab_2_1_getLed1State())
         {
             led1.on(); // Turn on LED1
         }
@@ -27,20 +27,20 @@ void taskButtonLed()
         }
 
         // Force LED2 off when LED1 activates
-        if (getLed1State())
+        if (lab_2_1_getLed1State())
         {
             led2.off(); // Turn off LED2
-            setLed2State(LOW);
+            lab_2_1_setLed2State(LOW);
         }
     }
 }
 
 void taskBlinkingLed()
 {
-    if (!getLed1State())
+    if (!lab_2_1_getLed1State())
     {
-        setLed2State(!getLed2State());
-        if (getLed2State())
+        lab_2_1_setLed2State(!lab_2_1_getLed2State());
+        if (lab_2_1_getLed2State())
         {
             led2.on(); // Turn on LED2
         }
@@ -66,7 +66,7 @@ void taskCounterButtons()
         if (!button2Pressed)
         {                                   // Only increment once per press
             // counter = min(counter + 1, 20); 
-            setCounter(min(getCounter() + 1, 20)); // Increment by 1, max 20
+            lab_2_1_setCounter(min(lab_2_1_getCounter() + 1, 20)); // Increment by 1, max 20
             button2Pressed = true;          // Mark button as pressed
             printf("Increment!");           // Debug message
         }
@@ -82,7 +82,7 @@ void taskCounterButtons()
         if (!button3Pressed)
         {                                  // Only decrement once per press
             // counter = max(counter - 1, 1); 
-            setCounter(max(getCounter() - 1, 1)); // Decrement by 1, min 1
+            lab_2_1_setCounter(max(lab_2_1_getCounter() - 1, 1)); // Decrement by 1, min 1
             button3Pressed = true;         // Mark button as pressed
             printf("Decrement!\n");        // Debug message
         }
@@ -100,9 +100,9 @@ void taskIdle()
     printf("LED2: ");
     printf(led2.getState() ? "ON\n" : "OFF\n");
     printf("Flash Interval: ");
-    printf("%d", BLINKING_LED_TASK_REC + (getCounter() * 100)); // Convert ticks to ms
+    printf("%d", BLINKING_LED_TASK_REC + (lab_2_1_getCounter() * 100)); // Convert ticks to ms
     printf(" ms\n");
     printf("Counter: ");
-    printf("%d\n", getCounter());
+    printf("%d\n", lab_2_1_getCounter());
     printf("------------------\n");
 }

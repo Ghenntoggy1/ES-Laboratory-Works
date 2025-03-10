@@ -9,7 +9,7 @@ void lab_2_1_setup()
 {
     srvSerialSetup(); // Initialize serial I/O
 
-    globalStatesSetup();  // Initialize global states
+    lab_2_1_globalStatesSetup();  // Initialize global states
 
     setupTimer1(); // Set up Timer1 for system tick
 }

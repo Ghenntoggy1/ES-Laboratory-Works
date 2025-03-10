@@ -36,7 +36,7 @@ void setupTimer1()
 void timeScheduler()
 {
     // Dynamic recurrence for blinking LED task
-    int dynamicBlinkingLedTaskRec = BLINKING_LED_TASK_REC + (getCounter() * 100);
+    int dynamicBlinkingLedTaskRec = BLINKING_LED_TASK_REC + (lab_2_1_getCounter() * 100);
 
     // Task 1: Button LED
     if (--buttonLedTaskCounter <= 0)
