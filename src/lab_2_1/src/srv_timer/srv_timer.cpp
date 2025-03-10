@@ -1,6 +1,6 @@
 #include "srv_timer.h"
-#include "srv_global_states/srv_global_states.h"
-#include "srv_task_manager/srv_task_manager.h"
+#include "../srv_global_states/srv_global_states.h"
+#include "../srv_task_manager/srv_task_manager.h"
 #include <Arduino.h>
 
 // Define the task counters

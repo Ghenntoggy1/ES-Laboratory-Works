@@ -1,7 +1,7 @@
 #include "srv_task_manager.h"
-#include "dd_button/dd_button.h"
-#include "dd_led/dd_led.h"
-#include "srv_global_states/srv_global_states.h"
+#include "dd_button.h"
+#include "dd_led.h"
+#include "../srv_global_states/srv_global_states.h"
 #include <Arduino.h>
 
 // Custom Components

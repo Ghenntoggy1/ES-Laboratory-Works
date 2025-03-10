@@ -1,5 +1,5 @@
 #include "lab_2_1_main.h"
-#include "srv_serial_stdio/srv_serial_stdio.h"
+#include "srv_serial_stdio.h"
 #include "srv_timer/srv_timer.h"
 #include "srv_global_states/srv_global_states.h"
 #include "srv_task_manager/srv_task_manager.h"

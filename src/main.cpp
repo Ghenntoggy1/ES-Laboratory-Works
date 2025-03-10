@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include "lab_0_main.h"
-#include "lab_1_1_main.h"
-#include "lab_1_2_main.h"
-#include "lab_2_1_main.h"
+#include "lab_0_with_classes/src/lab_0_main.h"
+#include "lab_1_with_classes/src/lab_1_1_main.h"
+#include "lab_1_2/src/lab_1_2_main.h"
+#include "lab_2_1/src/lab_2_1_main.h"
 
 enum AppName {
     LAB_0,

@@ -1,8 +1,8 @@
 #include "lab_1_2_main.h"
 #include <Arduino.h>
-#include "srv_lcd_stdio/srv_lcd_stdio.h"
-#include "srv_keypad_stdio/srv_keypad_stdio.h"
-#include "dd_led/dd_led.h"
+#include "srv_lcd_stdio.h"
+#include "srv_keypad_stdio.h"
+#include "dd_led.h"
 
 Led ledValid(13);
 Led ledInvalid(12);
