@@ -1,0 +1,56 @@
+{
+    "version": 1,
+    "author": "Gusev Roman",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "wokwi-breadboard", "id": "bb1", "top": 112.2, "left": 12.4, "attrs": {} },
+      { "type": "wokwi-arduino-mega", "id": "mega", "top": -143.4, "left": -22.8, "attrs": {} },
+      { "type": "wokwi-potentiometer", "id": "pot1", "top": -39.7, "left": 403, "attrs": {} },
+      { "type": "wokwi-analog-joystick", "id": "joystick1", "top": -87, "left": 495, "attrs": {} },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": 225.6,
+        "left": 114.65,
+        "rotate": 90,
+        "attrs": { "value": "220" }
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led1",
+        "top": 150,
+        "left": 129,
+        "attrs": { "color": "red", "flip": "1" }
+      }
+    ],
+    "connections": [
+      [ "bb1:tp.1", "mega:5V", "red", [ "v-28.5", "h85.6" ] ],
+      [ "mega:GND.2", "bb1:tn.1", "black", [ "v64.5", "h-103.45", "v28.9" ] ],
+      [ "pot1:GND", "bb1:tn.11", "black", [ "v67.2", "h-268.8", "v38.5" ] ],
+      [ "bb1:tp.11", "pot1:VCC", "red", [ "v-18.9", "h277.6" ] ],
+      [ "joystick1:VCC", "bb1:tp.16", "red", [ "v57.6", "h-297.6" ] ],
+      [ "joystick1:GND", "bb1:tn.16", "black", [ "v38.4", "h-345.6", "v67.2" ] ],
+      [ "joystick1:SEL", "bb1:25t.a", "green", [ "v19.2", "h0", "v96", "h-288" ] ],
+      [ "bb1:25t.e", "mega:2", "green", [ "v19.2", "h-307.2", "v-384", "h249.6" ] ],
+      [ "pot1:SIG", "bb1:19t.a", "orange", [ "v48", "h-230.8" ] ],
+      [ "bb1:19t.e", "mega:A0", "orange", [ "v9.6", "h-201.6", "v-144", "h172.8" ] ],
+      [ "bb1:tn.10", "bb1:13t.a", "black", [ "v0" ] ],
+      [ "bb1:12b.j", "bb1:10b.j", "blue", [ "v0" ] ],
+      [ "bb1:10b.f", "bb1:10t.e", "blue", [ "v0" ] ],
+      [ "r1:1", "bb1:12t.e", "", [ "$bb" ] ],
+      [ "r1:2", "bb1:12b.i", "", [ "$bb" ] ],
+      [ "led1:A", "bb1:12t.d", "", [ "$bb" ] ],
+      [ "led1:C", "bb1:13t.d", "", [ "$bb" ] ],
+      [ "bb1:10t.a", "mega:8", "blue", [ "v-9.6", "h-144", "v-307.2", "h172.8" ] ],
+      [ "joystick1:VERT", "bb1:24t.a", "orange", [ "v124.8", "h-278.4" ] ],
+      [
+        "bb1:24t.e",
+        "mega:A6",
+        "orange",
+        [ "v76.8", "h-307.2", "v-201.6", "h249.6", "v-19.2", "h38.4" ]
+      ],
+      [ "joystick1:HORZ", "bb1:23t.a", "gold", [ "v86.4", "h-297.6" ] ],
+      [ "bb1:23t.e", "mega:A7", "gold", [ "v86.4", "h-307.2", "v-225.6", "h312" ] ]
+    ],
+    "dependencies": {}
+  }

@@ -30,10 +30,7 @@ GlobalVariables globalVariables = {
     .globalPotentiometerPhysicalValue = 0,
 
     .globalJoystickButtonState = false,
-    .ledForward = nullptr,
-    .ledBackward = nullptr,
-    .ledRight = nullptr,
-    .ledLeft = nullptr,
+    .ledPotentiometer = nullptr,
     .joystickMutex = NULL,
     .potentiometerMutex = NULL,
     .serialMutex = NULL,
@@ -43,10 +40,7 @@ void globalVariablesSetup()
 {
     globalVariables.joystick = new Joystick(JOYSTICK_X_PIN, JOYSTICK_Y_PIN, JOYSTICK_BUTTON_PIN);
     globalVariables.potentiometer = new Potentiometer(POTENTIOMETER_PIN);
-    globalVariables.ledForward = new Led(LED_FORWARD_PIN);
-    globalVariables.ledBackward = new Led(LED_BACKWARD_PIN);
-    globalVariables.ledRight = new Led(LED_RIGHT_PIN);
-    globalVariables.ledLeft = new Led(LED_LEFT_PIN);
+    globalVariables.ledPotentiometer = new Led(LED_POTENTIOMETER_PIN);
     globalVariables.joystickMutex = xSemaphoreCreateMutex();
     globalVariables.potentiometerMutex = xSemaphoreCreateMutex();
     globalVariables.serialMutex = xSemaphoreCreateMutex();

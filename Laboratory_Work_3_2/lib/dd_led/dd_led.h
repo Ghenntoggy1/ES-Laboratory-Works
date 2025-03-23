@@ -11,6 +11,7 @@ public:
     void on();
     void off();
     void toggle();
+    void analog(int value);
 };
 
 #endif
