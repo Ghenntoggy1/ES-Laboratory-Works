@@ -30,6 +30,20 @@ struct GlobalVariables {
     Potentiometer *potentiometer;
     int globalJoystickXValue;
     int globalJoystickYValue;
+
+    int globalJoystickRawXValue;
+    int globalJoystickRawYValue;
+    int globalJoystickMilliVoltXValue;
+    int globalJoystickMilliVoltYValue;
+    int globalJoystickSatMilliVoltXValue;
+    int globalJoystickSatMilliVoltYValue;
+    int globalJoystickSaltPiperFilteredMilliVoltXValue;
+    int globalJoystickSaltPiperFilteredMilliVoltYValue;
+    int globalJoystickWeightedAverageFilteredMilliVoltXValue;
+    int globalJoystickWeightedAverageFilteredMilliVoltYValue;
+    int globalJoystickPhysicalXValue;
+    int globalJoystickPhysicalYValue;
+
     bool globalJoystickButtonState;
     Led *ledForward;
     Led *ledBackward;

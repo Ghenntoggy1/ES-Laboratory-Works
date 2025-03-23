@@ -8,8 +8,8 @@
 #define JOYSTICK_RAW_VALUE_MAX 1023
 #define JOYSTICK_MILLIVOLT_MIN 0
 #define JOYSTICK_MILLIVOLT_MAX 5000
-#define JOYSTICK_MILLIVOLT_SAT_MIN 0
-#define JOYSTICK_MILLIVOLT_SAT_MAX 5000
+#define JOYSTICK_MILLIVOLT_SAT_MIN 1000
+#define JOYSTICK_MILLIVOLT_SAT_MAX 4000
 #define JOYSTICK_SALT_AND_PIPER_FILTER_SIZE 5
 #define JOYSTICK_WEIGHTED_AVERAGE_FILTER_SIZE 4
 static const int JOYSTICK_WEIGHTED_AVERAGE_FILTER_WEIGHTS[JOYSTICK_WEIGHTED_AVERAGE_FILTER_SIZE] = {50, 25, 15, 10};
@@ -22,6 +22,20 @@ class Joystick {
         int yPin;
         int xValue;
         int yValue;
+
+        int rawX;
+        int rawY;
+        int xMilliVolt;
+        int yMilliVolt;
+        int xSatMilliVolt;
+        int ySatMilliVolt;
+        int xSaltPiperFilteredMilliVolt;
+        int ySaltPiperFilteredMilliVolt;
+        int xWeightedAverageFilteredMilliVolt;
+        int yWeightedAverageFilteredMilliVolt;
+        int xPhysical;
+        int yPhysical;
+
         int xBufferSP[JOYSTICK_SALT_AND_PIPER_FILTER_SIZE];
         int yBufferSP[JOYSTICK_SALT_AND_PIPER_FILTER_SIZE];
         int xBufferWA[JOYSTICK_WEIGHTED_AVERAGE_FILTER_SIZE];
@@ -37,6 +51,9 @@ class Joystick {
         Joystick(int xPin, int yPin, int buttonPin);
         int getX();
         int getY();
+
+        int getRawX();
+        int getRawY();
         int getMilliVoltX();
         int getMilliVoltY();
         int getSatMilliVoltX();
@@ -47,6 +64,7 @@ class Joystick {
         int getWeightedAverageFilteredMilliVoltY();
         int getPhysicalX();
         int getPhysicalY();
+        
         bool getButtonState();
 };
 

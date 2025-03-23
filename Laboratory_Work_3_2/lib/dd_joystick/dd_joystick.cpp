@@ -8,6 +8,20 @@ Joystick::Joystick(int xPin, int yPin, int buttonPin)
     this->yPin = yPin;
     this->xValue = 0;
     this->yValue = 0;
+
+    this->rawX = 0;
+    this->rawY = 0;
+    this->xMilliVolt = 0;
+    this->yMilliVolt = 0;
+    this->xSatMilliVolt = 0;
+    this->ySatMilliVolt = 0;
+    this->xSaltPiperFilteredMilliVolt = 0;
+    this->ySaltPiperFilteredMilliVolt = 0;
+    this->xWeightedAverageFilteredMilliVolt = 0;
+    this->yWeightedAverageFilteredMilliVolt = 0;
+    this->xPhysical = 0;
+    this->yPhysical = 0;
+
     this->xBufferSP[JOYSTICK_SALT_AND_PIPER_FILTER_SIZE] = {0};
     this->yBufferSP[JOYSTICK_SALT_AND_PIPER_FILTER_SIZE] = {0};
     this->xBufferWA[JOYSTICK_WEIGHTED_AVERAGE_FILTER_SIZE] = {0};
@@ -129,11 +143,29 @@ int Joystick::convertToPhysicalValue(int mVoltFilteredValue, int min = JOYSTICK_
 int Joystick::getX()
 {
     int rawX = analogRead(xPin);
+
+    this->rawX = rawX;
+    
     int mVoltX = convertToMilliVolt(rawX);
+
+    this->xMilliVolt = mVoltX;
+
     int mVoltXSaturated = saturate(mVoltX);
+
+    this->xSatMilliVolt = mVoltXSaturated;
+
     int mVoltXSPFiltered = saltAndPiperFilter(mVoltXSaturated, this->xBufferSP);
+
+    this->xSaltPiperFilteredMilliVolt = mVoltXSPFiltered;
+
     int mVoltXWAFFiltered = weightedAverageFilter(mVoltXSPFiltered, this->xBufferWA);
+
+    this->xWeightedAverageFilteredMilliVolt = mVoltXWAFFiltered;
+
     int physicalX = convertToPhysicalValue(mVoltXWAFFiltered);
+
+    this->xPhysical = physicalX;
+
     this->xValue = physicalX;
      
     return this->xValue;
@@ -142,14 +174,92 @@ int Joystick::getX()
 int Joystick::getY()
 {
     int rawY = analogRead(yPin);
+
+    this->rawY = rawY;
+
     int mVoltY = convertToMilliVolt(rawY, JOYSTICK_MILLIVOLT_MAX, JOYSTICK_MILLIVOLT_MIN);
+
+    this->yMilliVolt = mVoltY;
+
     int mVoltYSaturated = saturate(mVoltY);
+
+    this->ySatMilliVolt = mVoltYSaturated;
+
     int mVoltYSPFiltered = saltAndPiperFilter(mVoltYSaturated, this->yBufferSP);
+
+    this->ySaltPiperFilteredMilliVolt = mVoltYSPFiltered;
+
     int mVoltYWAFFiltered = weightedAverageFilter(mVoltYSPFiltered, this->yBufferWA);
+
+    this->yWeightedAverageFilteredMilliVolt = mVoltYWAFFiltered;
+
     int physicalY = convertToPhysicalValue(mVoltYWAFFiltered, JOYSTICK_PHYSICAL_VALUE_MAX, JOYSTICK_PHYSICAL_VALUE_MIN);
+
+    this->yPhysical = physicalY;
+
     this->yValue = physicalY;
 
     return this->yValue;
+}
+
+int Joystick::getRawX()
+{
+    return this->rawX;
+}
+
+int Joystick::getRawY()
+{
+    return this->rawY;
+}
+
+int Joystick::getMilliVoltX()
+{
+    return this->xMilliVolt;
+}
+
+int Joystick::getMilliVoltY()
+{
+    return this->yMilliVolt;
+}
+
+int Joystick::getSatMilliVoltX()
+{
+    return this->xSatMilliVolt;
+}
+
+int Joystick::getSatMilliVoltY()
+{
+    return this->ySatMilliVolt;
+}
+
+int Joystick::getSaltPiperFilteredMilliVoltX()
+{
+    return this->xSaltPiperFilteredMilliVolt;
+}
+
+int Joystick::getSaltPiperFilteredMilliVoltY()
+{
+    return this->ySaltPiperFilteredMilliVolt;
+}
+
+int Joystick::getWeightedAverageFilteredMilliVoltX()
+{
+    return this->xWeightedAverageFilteredMilliVolt;
+}
+
+int Joystick::getWeightedAverageFilteredMilliVoltY()
+{
+    return this->yWeightedAverageFilteredMilliVolt;
+}
+
+int Joystick::getPhysicalX()
+{
+    return this->xPhysical;
+}
+
+int Joystick::getPhysicalY()
+{
+    return this->yPhysical;
 }
 
 bool Joystick::getButtonState()

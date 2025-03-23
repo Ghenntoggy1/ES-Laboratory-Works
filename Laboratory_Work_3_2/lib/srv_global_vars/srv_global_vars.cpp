@@ -7,6 +7,20 @@ GlobalVariables globalVariables = {
     .potentiometer = nullptr,
     .globalJoystickXValue = 0,
     .globalJoystickYValue = 0,
+
+    .globalJoystickRawXValue = 0,
+    .globalJoystickRawYValue = 0,
+    .globalJoystickMilliVoltXValue = 0,
+    .globalJoystickMilliVoltYValue = 0,
+    .globalJoystickSatMilliVoltXValue = 0,
+    .globalJoystickSatMilliVoltYValue = 0,
+    .globalJoystickSaltPiperFilteredMilliVoltXValue = 0,
+    .globalJoystickSaltPiperFilteredMilliVoltYValue = 0,
+    .globalJoystickWeightedAverageFilteredMilliVoltXValue = 0,
+    .globalJoystickWeightedAverageFilteredMilliVoltYValue = 0,
+    .globalJoystickPhysicalXValue = 0,
+    .globalJoystickPhysicalYValue = 0,
+
     .globalJoystickButtonState = false,
     .ledForward = nullptr,
     .ledBackward = nullptr,
@@ -45,6 +59,66 @@ int getGlobalJoystickXValue()
 int getGlobalJoystickYValue()
 {
     return globalVariables.globalJoystickYValue;
+}
+
+int getGlobalJoystickRawXValue()
+{
+    return globalVariables.globalJoystickRawXValue;
+}
+
+int getGlobalJoystickRawYValue()
+{
+    return globalVariables.globalJoystickRawYValue;
+}
+
+int getGlobalJoystickMilliVoltXValue()
+{
+    return globalVariables.globalJoystickMilliVoltXValue;
+}
+
+int getGlobalJoystickMilliVoltYValue()
+{
+    return globalVariables.globalJoystickMilliVoltYValue;
+}
+
+int getGlobalJoystickSatMilliVoltXValue()
+{
+    return globalVariables.globalJoystickSatMilliVoltXValue;
+}
+
+int getGlobalJoystickSatMilliVoltYValue()
+{
+    return globalVariables.globalJoystickSatMilliVoltYValue;
+}
+
+int getGlobalJoystickSaltPiperFilteredMilliVoltXValue()
+{
+    return globalVariables.globalJoystickSaltPiperFilteredMilliVoltXValue;
+}
+
+int getGlobalJoystickSaltPiperFilteredMilliVoltYValue()
+{
+    return globalVariables.globalJoystickSaltPiperFilteredMilliVoltYValue;
+}
+
+int getGlobalJoystickWeightedAverageFilteredMilliVoltXValue()
+{
+    return globalVariables.globalJoystickWeightedAverageFilteredMilliVoltXValue;
+}
+
+int getGlobalJoystickWeightedAverageFilteredMilliVoltYValue()
+{
+    return globalVariables.globalJoystickWeightedAverageFilteredMilliVoltYValue;
+}
+
+int getGlobalJoystickPhysicalXValue()
+{
+    return globalVariables.globalJoystickPhysicalXValue;
+}
+
+int getGlobalJoystickPhysicalYValue()
+{
+    return globalVariables.globalJoystickPhysicalYValue;
 }
 
 bool getGlobalJoystickButtonState()

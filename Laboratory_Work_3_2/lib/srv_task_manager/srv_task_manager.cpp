@@ -13,11 +13,39 @@ void joystickTask(void* pvParameters)
     while (1) {
         int x = globalVariables.joystick->getX();
         int y = globalVariables.joystick->getY();
+
+        int rawX = globalVariables.joystick->getRawX();
+        int rawY = globalVariables.joystick->getRawY();
+        int milliVoltX = globalVariables.joystick->getMilliVoltX();
+        int milliVoltY = globalVariables.joystick->getMilliVoltY();
+        int satMilliVoltX = globalVariables.joystick->getSatMilliVoltX();
+        int satMilliVoltY = globalVariables.joystick->getSatMilliVoltY();
+        int saltPiperFilteredMilliVoltX = globalVariables.joystick->getSaltPiperFilteredMilliVoltX();
+        int saltPiperFilteredMilliVoltY = globalVariables.joystick->getSaltPiperFilteredMilliVoltY();
+        int weightedAverageFilteredMilliVoltX = globalVariables.joystick->getWeightedAverageFilteredMilliVoltX();
+        int weightedAverageFilteredMilliVoltY = globalVariables.joystick->getWeightedAverageFilteredMilliVoltY();
+        int physicalX = globalVariables.joystick->getPhysicalX();
+        int physicalY = globalVariables.joystick->getPhysicalY();
+
         bool button = globalVariables.joystick->getButtonState();
         
         if (xSemaphoreTake(globalVariables.joystickMutex, portMAX_DELAY) == pdTRUE) {
             globalVariables.globalJoystickXValue = x;
             globalVariables.globalJoystickYValue = y;
+
+            globalVariables.globalJoystickRawXValue = rawX;
+            globalVariables.globalJoystickRawYValue = rawY;
+            globalVariables.globalJoystickMilliVoltXValue = milliVoltX;
+            globalVariables.globalJoystickMilliVoltYValue = milliVoltY;
+            globalVariables.globalJoystickSatMilliVoltXValue = satMilliVoltX;
+            globalVariables.globalJoystickSatMilliVoltYValue = satMilliVoltY;
+            globalVariables.globalJoystickSaltPiperFilteredMilliVoltXValue = saltPiperFilteredMilliVoltX;
+            globalVariables.globalJoystickSaltPiperFilteredMilliVoltYValue = saltPiperFilteredMilliVoltY;
+            globalVariables.globalJoystickWeightedAverageFilteredMilliVoltXValue = weightedAverageFilteredMilliVoltX;
+            globalVariables.globalJoystickWeightedAverageFilteredMilliVoltYValue = weightedAverageFilteredMilliVoltY;
+            globalVariables.globalJoystickPhysicalXValue = physicalX;
+            globalVariables.globalJoystickPhysicalYValue = physicalY;
+
             globalVariables.globalJoystickButtonState = button;
             xSemaphoreGive(globalVariables.joystickMutex);
         }
@@ -33,6 +61,20 @@ void serialReportTask(void* pvParameters)
     
     int localX = 0;
     int localY = 0;
+    
+    int localRawX = 0;
+    int localRawY = 0;
+    int localMilliVoltX = 0;
+    int localMilliVoltY = 0;
+    int localSatMilliVoltX = 0;
+    int localSatMilliVoltY = 0;
+    int localSaltPiperFilteredMilliVoltX = 0;
+    int localSaltPiperFilteredMilliVoltY = 0;
+    int localWeightedAverageFilteredMilliVoltX = 0;
+    int localWeightedAverageFilteredMilliVoltY = 0;
+    int localPhysicalX = 0;
+    int localPhysicalY = 0;
+
     bool localButton = false;
 
     while (1) {
@@ -40,6 +82,20 @@ void serialReportTask(void* pvParameters)
         {
             localX = globalVariables.globalJoystickXValue;
             localY = globalVariables.globalJoystickYValue;
+
+            localRawX = globalVariables.globalJoystickRawXValue;
+            localRawY = globalVariables.globalJoystickRawYValue;
+            localMilliVoltX = globalVariables.globalJoystickMilliVoltXValue;
+            localMilliVoltY = globalVariables.globalJoystickMilliVoltYValue;
+            localSatMilliVoltX = globalVariables.globalJoystickSatMilliVoltXValue;
+            localSatMilliVoltY = globalVariables.globalJoystickSatMilliVoltYValue;
+            localSaltPiperFilteredMilliVoltX = globalVariables.globalJoystickSaltPiperFilteredMilliVoltXValue;
+            localSaltPiperFilteredMilliVoltY = globalVariables.globalJoystickSaltPiperFilteredMilliVoltYValue;
+            localWeightedAverageFilteredMilliVoltX = globalVariables.globalJoystickWeightedAverageFilteredMilliVoltXValue;
+            localWeightedAverageFilteredMilliVoltY = globalVariables.globalJoystickWeightedAverageFilteredMilliVoltYValue;
+            localPhysicalX = globalVariables.globalJoystickPhysicalXValue;
+            localPhysicalY = globalVariables.globalJoystickPhysicalYValue;
+
             localButton = globalVariables.globalJoystickButtonState;
             xSemaphoreGive(globalVariables.joystickMutex);
         }
@@ -47,8 +103,8 @@ void serialReportTask(void* pvParameters)
         if (xSemaphoreTake(globalVariables.serialMutex, portMAX_DELAY) == pdTRUE) 
         {
             printf("STATUS REPORT:\n");
-            printf("X: %d\n", localX);
-            printf("Y: %d\n", localY);
+            printf("Raw X: %d | mVolt X: %d mV | Sat. X: %d mV | S.P.Fltr. X: %d | W.A.Fltr. X: %d | Phy. X: %d\n", localRawX, localMilliVoltX, localSatMilliVoltX, localSaltPiperFilteredMilliVoltX, localWeightedAverageFilteredMilliVoltX, localPhysicalX);
+            printf("Raw Y: %d | mVolt Y: %d mV | Sat. Y: %d mV | S.P.Fltr. Y: %d | W.A.Fltr. Y: %d | Phy. Y: %d\n", localRawY, localMilliVoltY, localSatMilliVoltY, localSaltPiperFilteredMilliVoltY, localWeightedAverageFilteredMilliVoltY, localPhysicalY);
             printf("Button: %d\n", localButton);
             if (localX > THRESHOLD_X_RUN) {
                 globalVariables.ledLeft->off();
