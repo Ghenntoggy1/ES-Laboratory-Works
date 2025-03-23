@@ -138,7 +138,6 @@ void serialReportTask(void* pvParameters)
             localWeightedAverageFilteredMilliVoltPotValue = globalVariables.globalPotentiometerWeightedAverageFilteredMilliVoltValue;
             localPhysicalPotValue = globalVariables.globalPotentiometerPhysicalValue;
 
-
             localButton = globalVariables.globalJoystickButtonState;
             xSemaphoreGive(globalVariables.joystickMutex);
         }
