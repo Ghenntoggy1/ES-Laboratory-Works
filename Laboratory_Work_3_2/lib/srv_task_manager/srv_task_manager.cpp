@@ -79,9 +79,11 @@ void potentiometerTask(void* pvParameters)
             globalVariables.globalPotentiometerWeightedAverageFilteredMilliVoltValue = weightedAverageFilteredMilliVoltPotValue;
             globalVariables.globalPotentiometerPhysicalValue = physicalPotValue;
 
+            globalVariables.ledPotentiometer->analog(physicalPotValue);
+
             xSemaphoreGive(globalVariables.potentiometerMutex);
         }
-
+        
         xTaskDelayUntil(&snapshotTick, potentiometerRecTicks);
     }
 }
@@ -90,9 +92,6 @@ void serialReportTask(void* pvParameters)
 {
     TickType_t snapshotTick = xTaskGetTickCount();
     const TickType_t serialReportRecTicks = pdMS_TO_TICKS(SERIAL_REPORT_TASK_REC_MS);
-    
-    int localX = 0;
-    int localY = 0;
     
     int localRawX = 0;
     int localRawY = 0;
@@ -119,9 +118,6 @@ void serialReportTask(void* pvParameters)
     while (1) {
         if (xSemaphoreTake(globalVariables.joystickMutex, portMAX_DELAY) == pdTRUE) 
         {
-            localX = globalVariables.globalJoystickXValue;
-            localY = globalVariables.globalJoystickYValue;
-
             localRawX = globalVariables.globalJoystickRawXValue;
             localRawY = globalVariables.globalJoystickRawYValue;
             localMilliVoltX = globalVariables.globalJoystickMilliVoltXValue;
@@ -142,6 +138,7 @@ void serialReportTask(void* pvParameters)
             localWeightedAverageFilteredMilliVoltPotValue = globalVariables.globalPotentiometerWeightedAverageFilteredMilliVoltValue;
             localPhysicalPotValue = globalVariables.globalPotentiometerPhysicalValue;
 
+
             localButton = globalVariables.globalJoystickButtonState;
             xSemaphoreGive(globalVariables.joystickMutex);
         }
@@ -153,53 +150,6 @@ void serialReportTask(void* pvParameters)
             printf("Raw Y: %d | mVolt Y: %d mV | Sat. Y: %d mV | S.P.Fltr. Y: %d | W.A.Fltr. Y: %d | Phy. Y: %d\n", localRawY, localMilliVoltY, localSatMilliVoltY, localSaltPiperFilteredMilliVoltY, localWeightedAverageFilteredMilliVoltY, localPhysicalY);
             printf("Button: %d\n", localButton);
             printf("Raw PotValue: %d | mVolt PotValue: %d mV | Sat. PotValue: %d mV | S.P.Fltr. PotValue: %d | W.A.Fltr. PotValue: %d | Phy. PotValue: %d\n", localRawPotValue, localMilliVoltPotValue, localSatMilliVoltPotValue, localSaltPiperFilteredMilliVoltPotValue, localWeightedAverageFilteredMilliVoltPotValue, localPhysicalPotValue);
-            if (localX > THRESHOLD_X_RUN) {
-                globalVariables.ledLeft->off();
-                globalVariables.ledRight->on();
-                printf("Running Right\n");
-            } else if (localX > THRESHOLD_X_STAND) {
-                globalVariables.ledLeft->off();
-                globalVariables.ledRight->on();
-                printf("Walking Right\n");
-            } else if (localX < -THRESHOLD_X_RUN) {
-                globalVariables.ledRight->off();
-                globalVariables.ledLeft->on();
-                printf("Running Left\n");
-            } else if (localX < -THRESHOLD_X_STAND) {
-                globalVariables.ledRight->off();
-                globalVariables.ledLeft->on();
-                printf("Walking Left\n");
-            } else {
-                globalVariables.ledRight->off();
-                globalVariables.ledLeft->off();
-            }
-        
-            if (localY > THRESHOLD_Y_RUN) {
-                globalVariables.ledBackward->off();
-                globalVariables.ledForward->on();
-                printf("Running Forward\n");
-            } else if (localY > THRESHOLD_Y_STAND) {
-                globalVariables.ledBackward->off();
-                globalVariables.ledForward->on();
-                printf("Walking Forward\n");
-            } else if (localY < -THRESHOLD_Y_RUN) {
-                globalVariables.ledForward->off();
-                globalVariables.ledBackward->on();
-                printf("Running Backwards\n");
-            } else if (localY < -THRESHOLD_Y_STAND) {
-                globalVariables.ledForward->off();
-                globalVariables.ledBackward->on();
-                printf("Walking Backwards\n");
-            } else {
-                globalVariables.ledForward->off();
-                globalVariables.ledBackward->off();
-            }
-        
-            if (localX >= -THRESHOLD_X_STAND && localX <= THRESHOLD_X_STAND && localY >= -THRESHOLD_Y_STAND && localY <= THRESHOLD_Y_STAND) {
-                
-                printf("Standing\n");
-            }
-
             xSemaphoreGive(globalVariables.serialMutex);
         }
 

@@ -20,3 +20,7 @@ int Led::getState() {
 void Led::toggle() {
     return digitalWrite(ledPin, getState() == HIGH ? LOW : HIGH);
 }
+
+void Led::analog(int value) {
+    return analogWrite(ledPin, value);
+}

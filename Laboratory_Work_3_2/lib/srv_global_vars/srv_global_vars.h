@@ -12,18 +12,10 @@
 #define JOYSTICK_X_PIN A6
 #define JOYSTICK_Y_PIN A7
 #define POTENTIOMETER_PIN A0
+
 #define JOYSTICK_BUTTON_PIN 2
 
-#define LED_FORWARD_PIN 10
-#define LED_BACKWARD_PIN 9
-#define LED_RIGHT_PIN 11
-#define LED_LEFT_PIN 12
-
-#define THRESHOLD_X_STAND 25
-#define THRESHOLD_Y_STAND 25
-#define THRESHOLD_X_RUN 75
-#define THRESHOLD_Y_RUN 75
-
+#define LED_POTENTIOMETER_PIN 8
 
 struct GlobalVariables {
     Joystick *joystick;
@@ -53,10 +45,7 @@ struct GlobalVariables {
     int globalPotentiometerPhysicalValue;
 
     bool globalJoystickButtonState;
-    Led *ledForward;
-    Led *ledBackward;
-    Led *ledRight;
-    Led *ledLeft;
+    Led *ledPotentiometer;
     SemaphoreHandle_t joystickMutex;
     SemaphoreHandle_t potentiometerMutex;
     SemaphoreHandle_t serialMutex;
