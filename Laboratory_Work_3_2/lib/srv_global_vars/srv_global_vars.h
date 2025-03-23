@@ -30,6 +30,7 @@ struct GlobalVariables {
     Potentiometer *potentiometer;
     int globalJoystickXValue;
     int globalJoystickYValue;
+    int globalPotentiometerValue;
 
     int globalJoystickRawXValue;
     int globalJoystickRawYValue;
@@ -44,12 +45,20 @@ struct GlobalVariables {
     int globalJoystickPhysicalXValue;
     int globalJoystickPhysicalYValue;
 
+    int globalPotentiometerRawValue;
+    int globalPotentiometerMilliVoltValue;
+    int globalPotentiometerSatMilliVoltValue;
+    int globalPotentiometerSaltPiperFilteredMilliVoltValue;
+    int globalPotentiometerWeightedAverageFilteredMilliVoltValue;
+    int globalPotentiometerPhysicalValue;
+
     bool globalJoystickButtonState;
     Led *ledForward;
     Led *ledBackward;
     Led *ledRight;
     Led *ledLeft;
     SemaphoreHandle_t joystickMutex;
+    SemaphoreHandle_t potentiometerMutex;
     SemaphoreHandle_t serialMutex;
 };
 
@@ -58,6 +67,7 @@ extern GlobalVariables globalVariables;
 void globalVariablesSetup();
 
 Joystick *getJoystick();
+Potentiometer *getPotentiometer();
 SemaphoreHandle_t getJoystickMutex();
 SemaphoreHandle_t getSerialMutex();
 

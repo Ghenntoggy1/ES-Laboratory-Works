@@ -193,7 +193,7 @@ int Joystick::getY()
 
     this->yWeightedAverageFilteredMilliVolt = mVoltYWAFFiltered;
 
-    int physicalY = convertToPhysicalValue(mVoltYWAFFiltered, JOYSTICK_PHYSICAL_VALUE_MAX, JOYSTICK_PHYSICAL_VALUE_MIN);
+    int physicalY = convertToPhysicalValue(mVoltYWAFFiltered);
 
     this->yPhysical = physicalY;
 

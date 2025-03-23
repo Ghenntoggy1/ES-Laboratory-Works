@@ -9,6 +9,7 @@ void lab_3_2_setup() {
     printf("Lab 3.2 setup done\n");
 
     xTaskCreate(joystickTask, "joystickTask", JOYSTICK_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
+    xTaskCreate(potentiometerTask, "potentiometerTask", POTENTIOMETER_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
     xTaskCreate(serialReportTask, "serialReportTask", SERIAL_REPORT_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
 
     vTaskStartScheduler();

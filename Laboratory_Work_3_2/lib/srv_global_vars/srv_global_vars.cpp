@@ -7,6 +7,7 @@ GlobalVariables globalVariables = {
     .potentiometer = nullptr,
     .globalJoystickXValue = 0,
     .globalJoystickYValue = 0,
+    .globalPotentiometerValue = 0,
 
     .globalJoystickRawXValue = 0,
     .globalJoystickRawYValue = 0,
@@ -21,12 +22,20 @@ GlobalVariables globalVariables = {
     .globalJoystickPhysicalXValue = 0,
     .globalJoystickPhysicalYValue = 0,
 
+    .globalPotentiometerRawValue = 0,
+    .globalPotentiometerMilliVoltValue = 0,
+    .globalPotentiometerSatMilliVoltValue = 0,
+    .globalPotentiometerSaltPiperFilteredMilliVoltValue = 0,
+    .globalPotentiometerWeightedAverageFilteredMilliVoltValue = 0,
+    .globalPotentiometerPhysicalValue = 0,
+
     .globalJoystickButtonState = false,
     .ledForward = nullptr,
     .ledBackward = nullptr,
     .ledRight = nullptr,
     .ledLeft = nullptr,
     .joystickMutex = NULL,
+    .potentiometerMutex = NULL,
     .serialMutex = NULL,
 };
 
@@ -39,6 +48,7 @@ void globalVariablesSetup()
     globalVariables.ledRight = new Led(LED_RIGHT_PIN);
     globalVariables.ledLeft = new Led(LED_LEFT_PIN);
     globalVariables.joystickMutex = xSemaphoreCreateMutex();
+    globalVariables.potentiometerMutex = xSemaphoreCreateMutex();
     globalVariables.serialMutex = xSemaphoreCreateMutex();
 }
 
@@ -59,6 +69,11 @@ int getGlobalJoystickXValue()
 int getGlobalJoystickYValue()
 {
     return globalVariables.globalJoystickYValue;
+}
+
+int getGlobalPotentiometerValue()
+{
+    return globalVariables.globalPotentiometerValue;
 }
 
 int getGlobalJoystickRawXValue()
@@ -121,6 +136,36 @@ int getGlobalJoystickPhysicalYValue()
     return globalVariables.globalJoystickPhysicalYValue;
 }
 
+int getGlobalPotentiometerRawValue()
+{
+    return globalVariables.globalPotentiometerRawValue;
+}
+
+int getGlobalPotentiometerMilliVoltValue()
+{
+    return globalVariables.globalPotentiometerMilliVoltValue;
+}
+
+int getGlobalPotentiometerSatMilliVoltValue()
+{
+    return globalVariables.globalPotentiometerSatMilliVoltValue;
+}
+
+int getGlobalPotentiometerSaltPiperFilteredMilliVoltValue()
+{
+    return globalVariables.globalPotentiometerSaltPiperFilteredMilliVoltValue;
+}
+
+int getGlobalPotentiometerWeightedAverageFilteredMilliVoltValue()
+{
+    return globalVariables.globalPotentiometerWeightedAverageFilteredMilliVoltValue;
+}
+
+int getGlobalPotentiometerPhysicalValue()
+{
+    return globalVariables.globalPotentiometerPhysicalValue;
+}
+
 bool getGlobalJoystickButtonState()
 {
     return globalVariables.globalJoystickButtonState;
@@ -134,6 +179,11 @@ int getGlobalPotValue()
 SemaphoreHandle_t getJoystickMutex()
 {
     return globalVariables.joystickMutex;
+}
+
+SemaphoreHandle_t getPotentiometerMutex()
+{
+    return globalVariables.potentiometerMutex;
 }
 
 SemaphoreHandle_t getSerialMutex()
