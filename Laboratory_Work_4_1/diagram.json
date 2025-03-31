@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "author": "Gusev Roman",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 208.2, "left": 50.8, "attrs": {} },
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": -85.8, "left": -3.6, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 201.8, "left": 412.8, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 217.2,
+      "left": 195.8,
+      "attrs": { "color": "red", "flip": "" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 302.4,
+      "left": 191.45,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "relay1:VCC", "bb1:tp.25", "red", [ "h0" ] ],
+    [ "bb1:tp.1", "mega:5V", "red", [ "v-76.5", "h78.4" ] ],
+    [ "bb1:tn.1", "mega:GND.2", "black", [ "v-0.1", "h-8", "v-76.8", "h86.4" ] ],
+    [ "relay1:GND", "bb1:tn.25", "black", [ "h0" ] ],
+    [
+      "relay1:IN",
+      "mega:8",
+      "green",
+      [ "h-163.2", "v-105.8", "h163.2", "v-249.6", "h-240", "v38.4" ]
+    ],
+    [ "bb1:15t.b", "bb1:tn.5", "black", [ "h-86.4", "v-38.3" ] ],
+    [ "led1:A", "bb1:16t.a", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:15t.a", "", [ "$bb" ] ],
+    [ "r1:1", "bb1:16t.c", "", [ "$bb" ] ],
+    [ "r1:2", "bb1:16b.g", "", [ "$bb" ] ],
+    [ "bb1:16b.j", "relay1:COM", "red", [ "v19.2", "h355.2", "v-19.2" ] ],
+    [ "mega:3.3V", "bb1:bp.1", "red", [ "v35.7", "h-93.8", "v259.2" ] ],
+    [ "bb1:bp.25", "relay1:NO", "red", [ "v-0.9", "h203.2", "v-153.6" ] ]
+  ],
+  "dependencies": {}
+}
