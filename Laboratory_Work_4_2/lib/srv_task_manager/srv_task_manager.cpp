@@ -30,26 +30,22 @@ void commandHandlerTask(void* pvParameters) {
     uint8_t index = 0;
 
     while (1) {
-        if (xSemaphoreTake(getSerialMutex(), portMAX_DELAY) == pdTRUE) {
-            printf("> ");
-            
-            // Read input command from user
-            while (1) {
-                char c;
-                scanf("%c", &c);
-                printf("%c", c); // Echo back
+        while (1) {
+            char c;
+            scanf("%c", &c);
 
-                if (c == '\n' || c == '\r') {
-                    command[index] = '\0';
-                    break;
-                } else if (index < sizeof(command) - 1) {
-                    command[index++] = c;
-                }
+            if (c == '\n' || c == '\r') {
+                command[index] = '\0';
+                break;
+            } else if (index < sizeof(command) - 1) {
+                command[index++] = c;
             }
-            printf("INPUT: %s\n", command);
-            // Process the command
+        }
+
+        if (xSemaphoreTake(getSerialMutex(), portMAX_DELAY) == pdTRUE) {
             if (strncmp(command, "motor set ", 10) == 0) {
                 int val = atoi(&command[10]);
+                printf("Setting motor to %d%% power\n", val);
                 if (val < -100 || val > 100) {
                     printf("Warning: Invalid value. Must be between -100 and 100.\n");
                 } else {
@@ -87,7 +83,6 @@ void commandHandlerTask(void* pvParameters) {
             }
 
             index = 0;
-            memset(command, 0, sizeof(command));
             xSemaphoreGive(getSerialMutex());
         }
 
