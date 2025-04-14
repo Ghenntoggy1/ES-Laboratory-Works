@@ -30,15 +30,7 @@ struct GlobalVariables {
     Led *ledHystLow;
     Led *ledHystHigh;
 
-    QueueHandle_t commandQueue;
     SemaphoreHandle_t serialMutex;
-};
-
-enum CommandType { ULTRASONIC_SET_SETPOINT, ULTRASONIC_SET_HYSTERESIS, MOTOR_STOP };
-
-struct Command {
-    CommandType commandType;
-    int commandValue;
 };
 
 extern GlobalVariables globalVariables;

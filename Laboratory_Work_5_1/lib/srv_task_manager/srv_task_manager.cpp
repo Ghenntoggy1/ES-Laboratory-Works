@@ -105,7 +105,7 @@ void commandHandlerTask(void* pvParameters) {
                 printf("Hysteresis band set to %s\n", buf);
             } else {
                 printf("Unknown command.\n");
-                printf("Try: set <val>, hyst <val>, stop, status\n");
+                printf("Try: set <val>, hyst <val>\n");
             }
 
             xSemaphoreGive(getSerialMutex());

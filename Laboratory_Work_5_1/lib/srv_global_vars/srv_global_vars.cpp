@@ -8,7 +8,6 @@ GlobalVariables globalVariables = {
     .ultrasonicSensor = NULL,
     .ledHystLow = NULL,
     .ledHystHigh = NULL,
-    .commandQueue = NULL,
     .serialMutex = NULL,
 };
 
@@ -25,7 +24,6 @@ void globalVariablesSetup()
     globalVariables.ultrasonicSensor = new DD_ULTRASONIC(DD_ULTRASONIC_TRIG_PIN, DD_ULTRASONIC_ECHO_PIN);
     globalVariables.ultrasonicSensor->init();
 
-    globalVariables.commandQueue = xQueueCreate(10, sizeof(Command));
     globalVariables.serialMutex = xSemaphoreCreateMutex();
 }
 
