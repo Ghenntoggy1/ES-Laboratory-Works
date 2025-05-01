@@ -16,27 +16,20 @@ void motorUpdateTask(void *pvParameters) {
         float lowerThreshold = setpoint - hysteresis;
 
         if (currentDistance > upperThreshold) {
-            globalVariables.motorA->set_power(-20);
+            globalVariables.motorA->set_power(20);
             globalVariables.ledHystHigh->on();
             globalVariables.ledHystLow->off();
             if (xSemaphoreTake(getSerialMutex(), portMAX_DELAY) == pdTRUE) {
                 xSemaphoreGive(getSerialMutex());
             }
         } else if (currentDistance < lowerThreshold) {
-            globalVariables.motorA->set_power(20);
+            globalVariables.motorA->stop_motor();
             globalVariables.ledHystHigh->off();
             globalVariables.ledHystLow->on();
             if (xSemaphoreTake(getSerialMutex(), portMAX_DELAY) == pdTRUE) {
                 xSemaphoreGive(getSerialMutex());
             }
-        } else {
-            globalVariables.motorA->stop_motor();
-            globalVariables.ledHystHigh->off();
-            globalVariables.ledHystLow->off();
-            if (xSemaphoreTake(getSerialMutex(), portMAX_DELAY) == pdTRUE) {
-                xSemaphoreGive(getSerialMutex());
-            }
-        }
+        } 
 
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(MOTOR_CONTROL_TASK_REC_MS));
     }
