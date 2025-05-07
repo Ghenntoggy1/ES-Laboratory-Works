@@ -11,7 +11,6 @@ void globalVariablesSetup()
 {
     globalVariables.servoMotor = new ServoMotor(SERVO_PIN, FEEDBACK_PIN);
     globalVariables.setpoint = SETPOINT_DEFAULT;
-    globalVariables.servoMotor->setSetpoint(globalVariables.setpoint);
     globalVariables.servoMotor->init();
 
     globalVariables.serialMutex = xSemaphoreCreateMutex();

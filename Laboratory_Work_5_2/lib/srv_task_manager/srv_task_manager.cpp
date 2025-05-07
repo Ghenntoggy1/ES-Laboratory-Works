@@ -64,7 +64,6 @@ void commandHandlerTask(void* pvParameters) {
     if (xSemaphoreTake(getSerialMutex(), portMAX_DELAY) == pdTRUE) {
         printf("Distance Control using PID Control\n");
         printf("- set <value>   - Set Target Distance\n");
-        printf("Setpoint  Feedback  Output\n");
         xSemaphoreGive(getSerialMutex());
     }
 

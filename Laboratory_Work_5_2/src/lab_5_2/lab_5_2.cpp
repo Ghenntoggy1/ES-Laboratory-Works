@@ -11,12 +11,9 @@ void lab_5_2_setup() {
     printf("Lab 5.2 setup done\n");
 
     // Create tasks
-    xTaskCreate(motorUpdateTask, "MotorControlTask", 
-        MOTOR_CONTROL_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
-    xTaskCreate(commandHandlerTask, "CommandHandler", 
-        COMMAND_HANDLER_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
-    xTaskCreate(serialReportTask, "SerialReportTask", 
-        SERIAL_REPORT_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
+    xTaskCreate(motorUpdateTask, "MotorControlTask", MOTOR_CONTROL_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
+    xTaskCreate(commandHandlerTask, "CommandHandler", COMMAND_HANDLER_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
+    xTaskCreate(serialReportTask, "SerialReportTask", SERIAL_REPORT_TASK_STACK_SIZE, NULL, TASK_PRIORITY, NULL);
 }
 
 void lab_5_2_loop() {
