@@ -2,9 +2,9 @@
 #include <Arduino.h>
 
 Button::Button(int buttonPin): buttonPin(buttonPin) {
-    pinMode(buttonPin, INPUT_PULLUP); // Use internal pull-up resistor
+    pinMode(buttonPin, INPUT_PULLUP);
 }
 
-int Button::readInput() {
-    return digitalRead(buttonPin) ? 0 : 1;
+bool Button::isPressed() {
+    return digitalRead(buttonPin) == LOW;
 }
