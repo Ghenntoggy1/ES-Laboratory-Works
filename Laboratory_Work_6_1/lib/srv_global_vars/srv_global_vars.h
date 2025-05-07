@@ -4,8 +4,10 @@
 #include "dd_button.h"
 #include "dd_led.h"
 
-#define LED_PIN 8
-#define BUTTON_PIN 9
+#define BUTTON_PIN 8
+#define LED_PIN 9
+#define OFF_TO_BLINKING_TIME_MS 50
+#define ON_TO_BLINKING_TIME_MS 500
 
 struct GlobalVariables {
     Led *led;
