@@ -13,5 +13,5 @@ void lab_6_1_setup() {
 
 void lab_6_1_loop() {
     runFSM();
-    delay(100); // Add a small delay to avoid rapid state changes
+    delay(100);
 }

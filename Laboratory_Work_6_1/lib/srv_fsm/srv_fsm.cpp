@@ -19,7 +19,6 @@ void onExitStateOff() {
 
 void onEntryStateBlink() {
     printf("Current State: %s\n", FSMStateStrings[currentState]);
-    getLed()->on();
 }
 
 void onDoStateBlinking() {
@@ -47,7 +46,6 @@ void onExitStateOn() {
     printf("Transition %s\n", FSMTransitionStrings[currentTransition]);
     printf("Exiting State: %s\n", FSMStateStrings[currentState]);
 }
-
 
 StateTableStruct stateTable[FSM_TRANSITION_COUNT] = {
     [OFF_TO_BLINKING] = { STATE_OFF, STATE_BLINK, onEntryStateOff, onDoStateOff, onExitStateOff },
